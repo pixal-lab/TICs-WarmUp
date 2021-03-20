@@ -13,8 +13,7 @@ func error(A float64, B float64) float64 {
 	return math.Abs(B-A) / math.Abs(B)
 }
 func bisec(y float64, n float64) float64 {
-	var cont int = 1
-	parada := math.Pow(10, -6)
+	var parada float64 = math.Pow(10, -6)
 	var a float64 = 0
 	var b float64 = 1
 	var Fa float64 = funcion(a, n)
@@ -28,7 +27,6 @@ func bisec(y float64, n float64) float64 {
 	var m float64 = 0.5
 	var Fm float64 = funcion(m, n)
 	for error(Fm, y) > parada {
-		cont++
 		if Fm > y {
 			a = m
 		} else {
@@ -37,7 +35,6 @@ func bisec(y float64, n float64) float64 {
 		m = (a + b) / 2
 		Fm = funcion(m, n)
 	}
-	println(cont)
 	return m
 }
 
