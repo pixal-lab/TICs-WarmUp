@@ -20,3 +20,7 @@ Enviar cambios:
 git push
 ```
 
+Agregar archivos:
+```sh
+git add
+```
