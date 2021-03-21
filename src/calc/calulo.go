@@ -1,4 +1,4 @@
-package main
+package calc
 
 import "math"
 
@@ -36,8 +36,4 @@ func bisec(y float64, n float64) float64 {
 		Fm = funcion(m, n)
 	}
 	return m
-}
-
-func main() {
-	println(bisec(10.0686683, 12))
 }
