@@ -1,0 +1,33 @@
+/login
+{
+    POST:
+        user
+        password
+}
+
+/logout
+{}
+
+/register
+{
+    POST:
+        user
+        password
+}
+
+/add
+{
+    POST:
+        id_user
+        producto
+        vendedor
+        total
+        cuota
+        periodo
+}
+
+/remove
+{
+    GET:
+        id
+}
