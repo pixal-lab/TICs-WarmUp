@@ -52,7 +52,8 @@ func registro(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("No coinciden las contraseñas, vuelva a ingresarlo ")
 	} */
 func Remover(w http.ResponseWriter, r *http.Request){
-	id_user := r.FormValue("id_user") //aqui debería ser oferta??
+	id_usert := r.FormValue("id_user")	//buscar id del usuario y el id de la consulta para realizar la  eliminación de esta
+	id_consulta := r.FormValue("id_consulta") 
 }
 func AgregarOferta(w http.ResponseWriter, r *http.Request) {
 	nombre_producto := r.FormValue("nombre_producto")
