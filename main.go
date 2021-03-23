@@ -52,7 +52,7 @@ func registro(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("No coinciden las contraseñas, vuelva a ingresarlo ")
 	} */
 func Remover(w http.ResponseWriter, r *http.Request){
-	id_usert := r.FormValue("id_user")	//buscar id del usuario y el id de la consulta para realizar la  eliminación de esta
+	id_user := r.FormValue("id_user")	//buscar id del usuario y el id de la consulta para realizar la  eliminación de esta
 	id_consulta := r.FormValue("id_consulta") 
 }
 func AgregarOferta(w http.ResponseWriter, r *http.Request) {
@@ -72,10 +72,10 @@ func main() {
 	router := mux.NewRouter()
 	//los metodos deben llevar la misma palabra en el action del form (html) y en los parametros del HandleFunc
 	router.HandleFunc("/", Login).Methods("POST")                           //para los datos provenientes del index email y contraseña
-	r.HandleFunc("/logout", Logout)						//Cerrar sesión del usuario
+	r.HandleFunc("/logout", Logout).Methods("POST")						//Cerrar sesión del usuario
 	router.HandleFunc("/registration.html", registro).Methods("POST")       //para los datos provenientes de la pagina de registro email y contraseña
 	router.HandleFunc("/AgregarOferta.html", AgregarOferta).Methods("POST") //para los datos provenientes de la pagina de registro email y contraseña
-	router.HandleFun("/remove", Remover).Methods("DELETE")
+	router.HandleFun("/remove", Remover).Methods("POST")
 
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./Maqueta/"))) //ejecuta el /index.html
 
