@@ -41,18 +41,41 @@ func registro(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode("usuario no disponible")
 	}
 }
+/*	Posible forma de registro
+	nombre_usuario := r.FormValue("nombre_usuario")
+	contraseña := r.FormValue("contraseña")
+	validar_contraseña := r.FormValue("validar_contraseña")
 
+	if r.FormValue("contraseña") == r.FormValue("validar_contraseña"){
+		http.Redirect(w, r, "index.html", http.StatusSeeOther)
+	}else{
+		fmt.Printf("No coinciden las contraseñas, vuelva a ingresarlo ")
+	} */
+func Remover(w http.ResponseWriter, r *http.Request){
+	id_usert := r.FormValue("id_user")	//buscar id del usuario y el id de la consulta para realizar la  eliminación de esta
+	id_consulta := r.FormValue("id_consulta") 
+}
 func AgregarOferta(w http.ResponseWriter, r *http.Request) {
+	nombre_producto := r.FormValue("nombre_producto")
+	monto_solicitado := r.FormValue("monto_solicitado")
+	valor_cuotas := r.FormValue("valor_cuotas")
+	numero_cuotas := r.FormValue("numero_cuotas")
+	/*Da aqui mandar los valores pa la bdd*/
 	print("aqui deberian llegar los valores de la oferta \n\n\n")
 	print(r)
+}
+func Logout(r*http.Request){
+	//buscando como remoover weaita	
 }
 
 func main() {
 	router := mux.NewRouter()
 	//los metodos deben llevar la misma palabra en el action del form (html) y en los parametros del HandleFunc
 	router.HandleFunc("/", Login).Methods("POST")                           //para los datos provenientes del index email y contraseña
+	r.HandleFunc("/logout", Logout)						//Cerrar sesión del usuario
 	router.HandleFunc("/registration.html", registro).Methods("POST")       //para los datos provenientes de la pagina de registro email y contraseña
 	router.HandleFunc("/AgregarOferta.html", AgregarOferta).Methods("POST") //para los datos provenientes de la pagina de registro email y contraseña
+	router.HandleFun("/remove", Remover).Methods("DELETE")
 
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./Maqueta/"))) //ejecuta el /index.html
 
