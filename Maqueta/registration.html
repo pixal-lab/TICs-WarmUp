@@ -37,18 +37,23 @@
 <body class="text-center">
     
   <main class="form-signin">
-      <form action="/" method="POST">
+      <form action="/registration.html" method="POST">
         <img class="mb-4" src="mikasa.png" alt="" width="200" height="200">
-        <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
-        <label for="inputEmail" class="visually-hidden">Email</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="ejemplo@mail.com" required autofocus>
-        <label for="inputPassword" class="visually-hidden">contraseña</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="********" required>
+        <h1 class="h3 mb-3 fw-normal">registration</h1>
+        <label for="inputEmail" class="visually-hidden">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       </form>
-      <label>
-        <a href = "/registration.html">Registrarse</a>  
-      </label>
+      <button type="button" class="btn btn-secondary"><a href="AgregarOferta.html">Oferta</a></button>
+      <button type="button" class="btn btn-secondary"><a href="ConsultarOferta.html">Formulario</a></button>
+      
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
   </main>
 
