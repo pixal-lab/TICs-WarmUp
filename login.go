@@ -10,12 +10,13 @@ func login(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	password := r.FormValue("password")
 	if loginCheck(email, password) { //funcion_validadora
-		/*
-			cookie := http.Cookie{Name: "locality", Value: "here", Expires: time.Now().Add(time.Hour), HttpOnly: true, MaxAge: 50000, Path: "/"}
-			http.SetCookie(w, &cookie)
-			fmt.Fprintf(w, "Yay")
-			cooki, err := r.Cookie("locality")
-			fmt.Fprint(w, cooki, err) */
+		cookie := http.Cookie{Name: "user", Value: email}
+		http.SetCookie(w, &cookie)
+		cookie2 := http.Cookie{Name: "pw", Value: password}
+		http.SetCookie(w, &cookie2)
+
+		// rec, _ := r.Cookie("pw")
+		// fmt.Fprint(w, rec.Value)
 		http.Redirect(w, r, "login.html", http.StatusSeeOther)
 	} else {
 		http.Redirect(w, r, "/", http.StatusSeeOther)

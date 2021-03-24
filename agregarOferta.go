@@ -7,6 +7,7 @@ import (
 )
 
 func AgregarOferta(w http.ResponseWriter, r *http.Request) {
+	userCookie, _ := r.Cookie("user")
 	producto := r.FormValue("producto")
 	vendedor := r.FormValue("vendedor")
 	total, err1 := strconv.Atoi(r.FormValue("total"))
@@ -16,7 +17,7 @@ func AgregarOferta(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "error")
 	} else {
 		if validarDatosCalculo(total, cuota, periodo) {
-			addOferta("editarConCookies", producto, vendedor, total, cuota, periodo, cae(total, cuota, periodo))
+			addOferta(userCookie.Value, producto, vendedor, total, cuota, periodo, cae(total, cuota, periodo))
 		} else {
 			fmt.Fprintf(w, "error2")
 		}
