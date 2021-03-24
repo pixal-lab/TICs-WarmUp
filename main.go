@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"github.com/gorilla/mux"
 	"net/http"
 	"time"
-	"TICS/TICs-WarmUp/src/DB_func/usuarios"
+
+	"github.com/gorilla/mux"
 )
 
 //json.NewEncoder(w).Encode(" API endpoint  POST")
@@ -37,20 +37,20 @@ func registro(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
 func Remover(w http.ResponseWriter, r *http.Request) {
 	id_user := r.FormValue("id_user") //buscar id del usuario y el id de la consulta para realizar la  eliminación de esta
 	id_consulta := r.FormValue("id_consulta")
 	print(id_user, id_consulta)
 }
 func AgregarOferta(w http.ResponseWriter, r *http.Request) {
-	nombre_producto := r.FormValue("nombre_producto")
-	monto_solicitado := r.FormValue("monto_solicitado")
-	valor_cuotas := r.FormValue("valor_cuotas")
-	numero_cuotas := r.FormValue("numero_cuotas")
+	nombre_producto := r.FormValue("nombre")
+	monto_solicitado := r.FormValue("oferta")
+	valor_cuotas := r.FormValue("numero1")
+	cuotas := r.FormValue("cuota")
+	numero_cuotas := r.FormValue("ncuota")
 	/*Da aqui mandar los valores pa la bdd*/
 	print("aqui deberian llegar los valores de la oferta \n\n\n")
-	print(nombre_producto, monto_solicitado, valor_cuotas, numero_cuotas)
+	print(nombre_producto, monto_solicitado, valor_cuotas, cuotas, numero_cuotas)
 }
 func Logout(w http.ResponseWriter, r *http.Request) {
 
@@ -66,25 +66,12 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
-<<<<<<< HEAD
 	router.HandleFunc("/", index).Methods("POST")                               //inicia index
 	router.HandleFunc("/registration.html", registro).Methods("POST")           //registration.html
 	router.HandleFunc("/AgregarOferta.html", AgregarOferta).Methods("POST")     //agregaroferta.html
 	router.HandleFunc("/ConsultarOferta.html", consultarOferta).Methods("POST") //no existe pero hay que poder eliminar objetos de este
 	router.HandleFunc("/logout", Logout)
 	router.HandleFunc("/remove", Remover).Methods("POST")
-=======
-//los metodos deben llevar la misma palabra en el action del form (html) y en los parametros del HandleFunc
-
-	router.HandleFunc("/", index).Methods("POST")                     //para los datos provenientes del index email y contraseña
-	router.HandleFunc("/logout", Logout)                              //Cerrar sesión del usuario
-	router.HandleFunc("/login.html1", login1)                         //Cerrar sesión del usuario
-	router.HandleFunc("/login.html2", login2)                         //Cerrar sesión del usuario
-	router.HandleFunc("/registration.html", registro).Methods("POST") //para los datos provenientes de la pagina de registro email y contraseña
-	router.HandleFunc("/AgregarOferta.html", AgregarOferta).Methods("POST")
-	router.HandleFunc("/remove", Remover).Methods("POST")
-	router.HandleFunc("/ConsultarOferta.html", consultarOferta).Methods("POST")
->>>>>>> 9db649100143d30570e6df33c56980633e59ea3d
 
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./Maqueta/"))) //ejecuta el /index.html
 
