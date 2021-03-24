@@ -37,11 +37,11 @@
     <form action="/addOffert" method="POST">
         <div class="form-group">
           <label for="nombre">Nombre producto</label>
-          <input type="text" name="nombre" id="producto" class="form-control" placeholder="Taladro Bauker" aria-describedby="helpId">
+          <input type="text" name="producto" id="producto" class="form-control" placeholder="Taladro Bauker" aria-describedby="helpId">
         </div>
         <div class="form-group">
           <label for="oferta">Quien lo ofrece</label>
-          <input type="text" name="oferta" id="vendedor" class="form-control" placeholder="Tarjeta CMR Falabella" aria-describedby="helpId">
+          <input type="text" name="vendedor" id="vendedor" class="form-control" placeholder="Tarjeta CMR Falabella" aria-describedby="helpId">
         </div>
         <div class="form-group">
             <label for="validationDefault01">Monto solicitado</label>
@@ -49,7 +49,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend2">$</span>
                 </div>
-                <input nombre ="numero1" id = "total" type="number" min="1" class="form-control"  placeholder="200000" value="" required>
+                <input name="total" id = "total" type="number" min="1" class="form-control"  placeholder="200000" value="" required>
             </div>
         </div>
         <div class="form-group">
@@ -63,7 +63,7 @@
         </div>
         <div class="form-group">
           <label for="ncuota">Número de cuotas</label>
-          <input type="number" min="2" max="48" name="ncuota" id="periodo" class="form-control" placeholder="12" aria-describedby="helpId">
+          <input type="number" min="2" max="48" name="periodo" id="periodo" class="form-control" placeholder="12" aria-describedby="helpId">
           
         </div>
         <div class="form-group">
