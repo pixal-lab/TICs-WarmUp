@@ -27,6 +27,7 @@ func addOferta(id_user string, producto string, vendedor string, total int, cuot
 	if err != nil {
 		return false
 	}
+	println(res)
 	return true
 }
 func main() {
