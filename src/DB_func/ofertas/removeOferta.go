@@ -46,3 +46,6 @@ func removeOferta(id string) bool {
 	}
 	return true
 }
+func main() {
+	removeOferta("605a85ad1f1fd48b895e80d5")
+}
