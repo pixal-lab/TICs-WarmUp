@@ -1,8 +1,7 @@
-package main
+package usuarios
 
 import (
 	"context"
-	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -10,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func remove(user string, pass string) bool {
+func Añadir(user string, password string) bool {
 	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -23,15 +22,11 @@ func remove(user string, pass string) bool {
 			panic(err)
 		}
 	}()
-
 	collection := client.Database("CAE").Collection("usuarios")
-	result, err := collection.DeleteOne(ctx, bson.M{"user": user, "password": pass})
+	res, err := collection.InsertOne(ctx, bson.D{{"user", user}, {"password", password}})
 	if err != nil {
-		log.Fatal(err)
 		return false
 	}
-	if result.DeletedCount == 0 {
-		return false
-	}
+	println(res)
 	return true
 }
