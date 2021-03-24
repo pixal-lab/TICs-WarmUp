@@ -11,8 +11,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+var uri string = "mongodb://localhost:27017"
+
 func addOferta(id_user string, producto string, vendedor string, total int, cuota int, periodo int, cae float64) bool {
-	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -34,7 +35,6 @@ func addOferta(id_user string, producto string, vendedor string, total int, cuot
 }
 
 func getOfertas(user string) []bson.M {
-	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -59,7 +59,6 @@ func getOfertas(user string) []bson.M {
 }
 
 func removeOferta(id string) bool {
-	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -95,7 +94,6 @@ func removeOferta(id string) bool {
 }
 
 func addUser(user string, password string) bool {
-	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -117,8 +115,6 @@ func addUser(user string, password string) bool {
 }
 
 func existUser(username string) bool {
-
-	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -149,7 +145,6 @@ func existUser(username string) bool {
 }
 
 func login(user string, pass string) bool {
-	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))

@@ -1,4 +1,4 @@
-package calc
+package main
 
 import "math"
 
@@ -36,4 +36,8 @@ func bisec(y float64, n float64) float64 {
 		Fm = funcion(m, n)
 	}
 	return m
+}
+
+func cae(total int, cuota int, periodo int) float64 {
+	return bisec(float64(total/cuota), float64(periodo))
 }
