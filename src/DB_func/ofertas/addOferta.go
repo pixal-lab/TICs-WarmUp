@@ -1,4 +1,4 @@
-package main
+package ofertas
 
 import (
 	"context"
@@ -30,7 +30,3 @@ func addOferta(id_user string, producto string, vendedor string, total int, cuot
 	println(res)
 	return true
 }
-
-/*func main() {
-	println(addOferta("Catalina", "Spalding NBA Marble", "Nico Bolton", 25000, 100, 3, 3.23))
-}*/
