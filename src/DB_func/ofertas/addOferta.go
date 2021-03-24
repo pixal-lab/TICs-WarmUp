@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func Añadir(user string, password string) bool {
+func addOferta(id_user string, producto string, vendedor string, total int, cuota int, periodo int, cae float64) bool {
 	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -22,11 +22,15 @@ func Añadir(user string, password string) bool {
 			panic(err)
 		}
 	}()
-	collection := client.Database("CAE").Collection("usuarios")
-	res, err := collection.InsertOne(ctx, bson.D{{"user", user}, {"password", password}})
+	collection := client.Database("CAE").Collection("ofertas")
+	res, err := collection.InsertOne(ctx, bson.D{{"id_user", id_user}, {"producto", producto}, {"vendedor", vendedor}, {"total", total}, {"cuota", cuota}, {"periodo", periodo}, {"cae", cae}})
 	if err != nil {
 		return false
 	}
 	println(res)
 	return true
 }
+
+/*func main() {
+	println(addOferta("Catalina", "Spalding NBA Marble", "Nico Bolton", 25000, 100, 3, 3.23))
+}*/
