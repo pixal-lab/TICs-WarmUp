@@ -14,7 +14,7 @@ func main() {
 	router.HandleFunc("/register", registro).Methods("POST")       //registration.html
 	router.HandleFunc("/addOffert", AgregarOferta).Methods("POST") //agregaroferta.html
 	router.HandleFunc("/consultar", consultarOferta)               //no existe pero hay que poder eliminar objetos de este
-	router.HandleFunc("/logout", Logout)
+	router.HandleFunc("/logout", logout)
 	router.HandleFunc("/remove", Remover).Methods("POST")
 
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./Maqueta/"))) //ejecuta el /index.html
