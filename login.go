@@ -14,8 +14,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, &cookie)
 		cookie2 := http.Cookie{Name: "pw", Value: password}
 		http.SetCookie(w, &cookie2)
-
 		// rec, _ := r.Cookie("pw")
+
 		// fmt.Fprint(w, rec.Value)
 		http.Redirect(w, r, "login.html", http.StatusSeeOther)
 	} else {
