@@ -10,10 +10,10 @@ import (
 
 func main() {
 	router := mux.NewRouter()
-	router.HandleFunc("/login", login).Methods("POST")               //inicia index
-	router.HandleFunc("/register", registro).Methods("POST")         //registration.html
-	router.HandleFunc("/addOffert", AgregarOferta).Methods("POST")   //agregaroferta.html
-	router.HandleFunc("/consultar", consultarOferta).Methods("POST") //no existe pero hay que poder eliminar objetos de este
+	router.HandleFunc("/login", login).Methods("POST")             //inicia index
+	router.HandleFunc("/register", registro).Methods("POST")       //registration.html
+	router.HandleFunc("/addOffert", AgregarOferta).Methods("POST") //agregaroferta.html
+	router.HandleFunc("/consultar", consultarOferta)               //no existe pero hay que poder eliminar objetos de este
 	router.HandleFunc("/logout", Logout)
 	router.HandleFunc("/remove", Remover).Methods("POST")
 
