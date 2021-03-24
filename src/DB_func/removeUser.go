@@ -35,6 +35,3 @@ func remove(user string, pass string) bool {
 	}
 	return true
 }
-func main() {
-	println(remove("David", "1234"))
-}
