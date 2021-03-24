@@ -21,7 +21,4 @@ func AgregarOferta(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "error2")
 		}
 	}
-	/*Da aqui mandar los valores pa la bdd*/
-	print("aqui deberian llegar los valores de la oferta \n\n\n")
-	print(producto, vendedor, total, cuota, periodo)
 }
