@@ -11,7 +11,7 @@ import (
 	//"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func Existe(username string) bool {
+func existUser(username string) bool {
 
 	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
