@@ -59,10 +59,6 @@ func login1(w http.ResponseWriter, r *http.Request) {
 	print("paso por el primer boton de login \n ")
 	http.Redirect(w, r, "/AgregarOferta.html", http.StatusSeeOther)
 }
-func login2(w http.ResponseWriter, r *http.Request) {
-	print("paso por el primer boton de login \n ")
-	http.Redirect(w, r, "/ConsultarOferta.html", http.StatusSeeOther)
-}
 func consultarOferta(w http.ResponseWriter, r *http.Request) {
 	print("prueba\n")
 	http.Redirect(w, r, "/ConsultarOferta.html", http.StatusSeeOther)
@@ -70,6 +66,14 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
+<<<<<<< HEAD
+	router.HandleFunc("/", index).Methods("POST")                               //inicia index
+	router.HandleFunc("/registration.html", registro).Methods("POST")           //registration.html
+	router.HandleFunc("/AgregarOferta.html", AgregarOferta).Methods("POST")     //agregaroferta.html
+	router.HandleFunc("/ConsultarOferta.html", consultarOferta).Methods("POST") //no existe pero hay que poder eliminar objetos de este
+	router.HandleFunc("/logout", Logout)
+	router.HandleFunc("/remove", Remover).Methods("POST")
+=======
 //los metodos deben llevar la misma palabra en el action del form (html) y en los parametros del HandleFunc
 
 	router.HandleFunc("/", index).Methods("POST")                     //para los datos provenientes del index email y contraseña
@@ -80,6 +84,7 @@ func main() {
 	router.HandleFunc("/AgregarOferta.html", AgregarOferta).Methods("POST")
 	router.HandleFunc("/remove", Remover).Methods("POST")
 	router.HandleFunc("/ConsultarOferta.html", consultarOferta).Methods("POST")
+>>>>>>> 9db649100143d30570e6df33c56980633e59ea3d
 
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./Maqueta/"))) //ejecuta el /index.html
 

@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func remove(user string, pass string) bool {
+func removeUser(user string, pass string) bool {
 	uri := "mongodb://localhost:27017"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
