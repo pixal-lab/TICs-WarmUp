@@ -173,7 +173,7 @@ func loginCheck(user string, pass string) bool {
 	}
 	return false
 }
-func ofCheck(user string, pass string) bool {
+func ofCheck(user string, idOfer string) bool {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
@@ -185,8 +185,12 @@ func ofCheck(user string, pass string) bool {
 			panic(err)
 		}
 	}()
-	collection := client.Database("CAE").Collection("usuarios")
-	filterCursor, err := collection.Find(ctx, bson.M{"user": user, "password": pass})
+	collection := client.Database("CAE").Collection("ofertas")
+	objectId, err := primitive.ObjectIDFromHex(idOfer)
+	if err != nil {
+		log.Println("Invalid id")
+	}
+	filterCursor, err := collection.Find(ctx, bson.M{"_id": objectId, "id_user": user})
 	if err != nil {
 		log.Fatal(err)
 	}
