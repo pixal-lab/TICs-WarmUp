@@ -58,6 +58,7 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 				arr1.Ar[j].Arr = t.Arr
 				seguir = false
 				println("check1", i)
+				break
 			}
 		}
 		println("pasomedio")
