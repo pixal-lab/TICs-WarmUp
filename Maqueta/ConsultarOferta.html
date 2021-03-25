@@ -47,7 +47,7 @@
             <tbody>
               {{ range $Dato := $Table.Arr}}
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{ $Dato.Rank}}</th>
                 <td>{{ $Dato.Vendedor }}</td>
                 <td>${{ $Dato.Total }}</td>
                 <td>{{ $Dato.Periodo }}</td>

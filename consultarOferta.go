@@ -11,6 +11,7 @@ import (
 )
 
 type datos struct {
+	Rank     string
 	Vendedor string
 	Total    string
 	Periodo  string
@@ -42,6 +43,7 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 		var parseId primitive.ObjectID = y["_id"].(primitive.ObjectID)
 		var id string = parseId.Hex()
 		persona := datos{
+			"",
 			y["vendedor"].(string),
 			strconv.Itoa(int(y["total"].(int32))),
 			strconv.Itoa(int(y["periodo"].(int32))),
@@ -68,8 +70,13 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 	}
 	for _, t := range arr1.Ar {
 		sort.Slice(t.Arr[:], func(i, j int) bool {
-			return t.Arr[i].Cae < t.Arr[j].Cae
+			return t.Arr[i].Cae > t.Arr[j].Cae
 		})
+	}
+	for i, _ := range arr1.Ar {
+		for j := range arr1.Ar[i].Arr {
+			arr1.Ar[i].Arr[j].Rank = strconv.Itoa(j + 1)
+		}
 	}
 	tmpl, err := template.ParseFiles("./Maqueta/ConsultarOferta.html")
 	tmpl.Execute(w, arr1)
