@@ -70,7 +70,7 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 	}
 	for _, t := range arr1.Ar {
 		sort.Slice(t.Arr[:], func(i, j int) bool {
-			return t.Arr[i].Cae > t.Arr[j].Cae
+			return t.Arr[i].Cae < t.Arr[j].Cae
 		})
 	}
 	for i, _ := range arr1.Ar {
