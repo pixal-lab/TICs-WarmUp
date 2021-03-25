@@ -46,7 +46,7 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 			strconv.Itoa(int(y["total"].(int32))),
 			strconv.Itoa(int(y["periodo"].(int32))),
 			strconv.Itoa(int(y["cuota"].(int32))),
-			fmt.Sprint(y["cae"].(float64)),
+			fmt.Sprintf("%.2f", y["cae"].(float64)*100),
 			userCookie.Value,
 			id}
 		prod := y["producto"].(string)
