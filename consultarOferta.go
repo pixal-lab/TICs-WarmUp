@@ -41,7 +41,6 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 	for i, y := range container {
 		var parseId primitive.ObjectID = y["_id"].(primitive.ObjectID)
 		var id string = parseId.Hex()
-		println(i)
 		persona := datos{
 			y["vendedor"].(string),
 			strconv.Itoa(int(y["total"].(int32))),
@@ -57,19 +56,15 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 				t.Arr = append(t.Arr, persona)
 				arr1.Ar[j].Arr = t.Arr
 				seguir = false
-				println("check1", i)
 				break
 			}
 		}
-		println("pasomedio")
 		if seguir {
-			println("check2", i)
 			var List []datos
 			List = append(List, persona)
 			tab := tabla{List, prod}
 			arr1.Ar = append(arr1.Ar, tab)
 		}
-		println("final")
 	}
 	for _, t := range arr1.Ar {
 		sort.Slice(t.Arr[:], func(i, j int) bool {
