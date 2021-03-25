@@ -38,7 +38,7 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 	}
 	container := getOfertas(coockie.Value)
 
-	for i, y := range container {
+	for _, y := range container {
 		var parseId primitive.ObjectID = y["_id"].(primitive.ObjectID)
 		var id string = parseId.Hex()
 		persona := datos{
