@@ -2,46 +2,58 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"html/template"
 	"net/http"
 	"sort"
-	"text/template"
+	"strconv"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type datos struct {
-	cuota, total, periodo  int32
-	cae                    float64
-	vendedor, producto, id string
+	Vendedor string
+	Total    string
+	Periodo  string
+	Cuota    string
+	Cae      string
+	User     string
+	Id       string
 }
 
 type tabla struct {
-	producto string
-	arr      []datos
+	Arr      []datos
+	Producto string
+}
+type dat struct {
+	Ar []tabla
 }
 
-var arr1 []tabla
-
 func consultarOferta(w http.ResponseWriter, r *http.Request) {
+	var arr1 dat
+	userCookie, _ := r.Cookie("user")
 	coockie, err := r.Cookie("user")
 	if err != nil {
 		//log.Println(err)
 		fmt.Fprintf(w, "error1")
 	}
 	container := getOfertas(coockie.Value)
-	log.Println(container)
-	for x, y := range container {
-		fmt.Println(x)
-		fmt.Println(y["cuota"].(int32), y["vendedor"].(string), y["cae"].(float64)*100)
+	for _, y := range container {
 		var parseId primitive.ObjectID = y["_id"].(primitive.ObjectID)
 		var id string = parseId.Hex()
-		persona := datos{y["cuota"].(int32), y["total"].(int32), y["periodo"].(int32), y["cae"].(float64), y["vendedor"].(string), y["producto"].(string), id}
+
+		persona := datos{
+			y["vendedor"].(string),
+			strconv.Itoa(int(y["total"].(int32))),
+			strconv.Itoa(int(y["periodo"].(int32))),
+			strconv.Itoa(int(y["cuota"].(int32))),
+			fmt.Sprint(y["cae"].(float64)),
+			userCookie.Value,
+			id}
 		prod := y["producto"].(string)
 		seguir := true
-		for _, t := range arr1 {
-			if t.producto == prod {
-				t.arr = append(t.arr, persona)
+		for _, t := range arr1.Ar {
+			if t.Producto == prod {
+				t.Arr = append(t.Arr, persona)
 				seguir = false
 				break
 			}
@@ -49,15 +61,15 @@ func consultarOferta(w http.ResponseWriter, r *http.Request) {
 		if seguir {
 			var List []datos
 			List = append(List, persona)
-			tab := tabla{prod, List}
-			arr1 = append(arr1, tab)
+			tab := tabla{List, prod}
+			arr1.Ar = append(arr1.Ar, tab)
 		}
 	}
-	for _, t := range arr1 {
-		sort.Slice(t.arr[:], func(i, j int) bool {
-			return t.arr[i].cae < t.arr[j].cae
+	for _, t := range arr1.Ar {
+		sort.Slice(t.Arr[:], func(i, j int) bool {
+			return t.Arr[i].Cae < t.Arr[j].Cae
 		})
 	}
-	tmpl, _ := template.ParseFiles("./AgregarOferta.html")
+	tmpl, err := template.ParseFiles("./Maqueta/ConsultarOferta.html")
 	tmpl.Execute(w, arr1)
 }
