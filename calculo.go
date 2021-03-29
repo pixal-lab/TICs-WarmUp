@@ -1,6 +1,8 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 func funcion(x float64, n float64) float64 {
 	if x == 0 {
@@ -38,6 +40,11 @@ func bisec(y float64, n float64) float64 {
 	return m
 }
 
+func Anualizar(m float64) float64 {
+	return math.Pow(1+m, 12) - 1
+}
+
 func cae(total int, cuota int, periodo int) float64 {
-	return bisec(float64(total)/float64(cuota), float64(periodo))
+	m := bisec(float64(total/cuota), float64(periodo))
+	return Anualizar(m)
 }
