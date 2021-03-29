@@ -39,5 +39,5 @@ func bisec(y float64, n float64) float64 {
 }
 
 func cae(total int, cuota int, periodo int) float64 {
-	return bisec(float64(total/cuota), float64(periodo))
+	return bisec(float64(total)/float64(cuota), float64(periodo))
 }
